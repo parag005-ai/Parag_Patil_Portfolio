@@ -16,7 +16,7 @@ export const portfolio = {
   research: [
     { meta: "IEEE INDISCON 2025 · DOI verified via LinkedIn", title: "Redefining Trust in the Food Chain with Blockchain and ML", description: "Published in the 2025 IEEE 6th India Council International Subsections Conference; conference held 21–23 August 2025 and added to IEEE Xplore on 2 December 2025.", href: "https://doi.org/10.1109/INDISCON66021.2025.11254735" },
     { meta: "IJIRMPS · 07 Dec 2025 · DOI verified via LinkedIn", title: "From Satellite to Soil: A High-Resolution Hybrid Sensing Framework for Accurate Farm-Level Yield Estimation and Transparent Crop Insurance", description: "Paper ID 232843 in the International Journal of Innovative Research in Engineering & Multidisciplinary Physical Sciences.", href: "https://doi.org/10.37082/IJIRMPS.v13.i6.232843" },
-    { meta: "Smart India Hackathon 2025", title: "Winner · Team Graviton · PS-SIH25263", description: "The supplied finale photographs verify Team Graviton’s winner recognition and ₹1,50,000 award for SIH 2025’s software edition.", href: null },
+    { meta: "Smart India Hackathon 2025", title: "Winner · Team Graviton · PS-SIH25263", description: "A proud milestone for Team Graviton—winning the SIH 2025 Software Edition and receiving the ₹1,50,000 award.", href: null },
   ],
   credentials: [
     { date: "Oct 2025", title: "Generative AI Leader Track", issuer: "Google Cloud Skills Boost" },
@@ -24,10 +24,10 @@ export const portfolio = {
     { date: "Sep 2024", title: "Red Hat System Administration I", issuer: "Red Hat training center" },
   ],
   skills: [
-    { index: "01", title: "Languages", items: ["Python", "Java", "JavaScript", "TypeScript", "SQL"] },
-    { index: "02", title: "Product", items: ["React", "Next.js", "HTML", "CSS", "REST APIs"] },
-    { index: "03", title: "Backend & data", items: ["FastAPI", "MySQL", "MongoDB", "PostgreSQL", "Git"] },
-    { index: "04", title: "Foundations", items: ["DSA", "OOP", "ML evaluation", "Problem solving", "System design basics"] },
+    { index: "01", title: "Languages", items: [{ name: "Python", level: "Core" }, { name: "Java", level: "Applied" }, { name: "JavaScript", level: "Applied" }, { name: "TypeScript", level: "Applied" }, { name: "SQL", level: "Applied" }] },
+    { index: "02", title: "Product", items: [{ name: "React", level: "Applied" }, { name: "Next.js", level: "Applied" }, { name: "HTML", level: "Applied" }, { name: "CSS", level: "Applied" }, { name: "REST APIs", level: "Core" }] },
+    { index: "03", title: "Backend & data", items: [{ name: "FastAPI", level: "Core" }, { name: "MySQL", level: "Applied" }, { name: "MongoDB", level: "Applied" }, { name: "PostgreSQL", level: "Applied" }, { name: "Git", level: "Core" }] },
+    { index: "04", title: "Foundations", items: [{ name: "DSA", level: "Applied" }, { name: "OOP", level: "Applied" }, { name: "ML evaluation", level: "Applied" }, { name: "Problem solving", level: "Core" }, { name: "System design basics", level: "Familiar" }] },
   ],
   moreWork: [
     { title: "Food Traceability", note: "Solidity, Ethereum, QR-backed supply-chain records", href: "https://github.com/parag005-ai/Food_traceability_Blockchain.git" },
