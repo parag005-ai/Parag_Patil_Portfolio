@@ -60,8 +60,7 @@ export function PortraitStage() {
         <Image
           src="/images/portrait.webp"
           alt="Parag Patil, computer engineering student and software developer"
-          width={1024}
-          height={1536}
+          fill
           priority
           sizes="(max-width: 820px) 80vw, 38vw"
         />

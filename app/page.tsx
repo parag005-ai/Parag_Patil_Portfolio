@@ -45,10 +45,10 @@ export default function Home() {
       </section>
 
       <section id="skills" className="section skills-section"><div className="shell">
-        <header className="section-heading"><p className="eyebrow">Capabilities</p><h2>A practical stack for end-to-end problem solving.</h2></header>
-        <div className="skills-grid">{portfolio.skills.map((group) => <article key={group.title}><span>{group.index}</span><h3>{group.title}</h3><p>{group.items.join(" · ")}</p></article>)}</div>
-        <div className="credentials"><p className="eyebrow">Selected credentials / LinkedIn verified</p><div className="credential-grid">{portfolio.credentials.map((credential) => <article key={credential.title}><span>{credential.date}</span><h3>{credential.title}</h3><p>{credential.issuer}</p></article>)}</div></div>
-        <div className="more-work"><p className="eyebrow">More experiments</p>{portfolio.moreWork.map((project) => <a key={project.title} href={project.href} target="_blank" rel="noreferrer"><span>{project.title}</span><small>{project.note}</small><ArrowUpRight size={17} /></a>)}</div>
+        <header className="section-heading skills-heading"><p className="eyebrow">01 / Capabilities</p><h2>A practical stack for end-to-end problem solving.</h2><p>Tools are grouped by the role they play—from writing the core logic to shipping and evaluating the complete system.</p></header>
+        <div className="skills-grid">{portfolio.skills.map((group) => <article key={group.title}><span>{group.index}</span><h3>{group.title}</h3><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div>
+        <section className="credentials" aria-labelledby="credentials-title"><header className="subsection-heading"><div><p className="eyebrow">02 / Selected credentials</p><h3 id="credentials-title">Verified learning milestones.</h3></div><p>Selected records verified from the public LinkedIn profile.</p></header><div className="credential-grid">{portfolio.credentials.map((credential) => <article key={credential.title}><span>{credential.date}</span><h3>{credential.title}</h3><p>{credential.issuer}</p></article>)}</div></section>
+        <section className="more-work" aria-labelledby="more-work-title"><header className="subsection-heading"><div><p className="eyebrow">03 / More experiments</p><h3 id="more-work-title">Additional systems in the repository.</h3></div><p>Smaller explorations that extend the main project stories.</p></header><div className="more-work-list">{portfolio.moreWork.map((project, index) => <a key={project.title} href={project.href} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{project.title}</span><small>{project.note}</small><ArrowUpRight size={17} /></a>)}</div></section>
       </div></section>
 
       <section id="contact" className="contact-section"><div className="shell contact-grid">
