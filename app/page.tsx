@@ -9,7 +9,6 @@ import { portfolio } from "@/content/portfolio";
 
 export default function Home() {
   const publicationCount = portfolio.research.filter((item) => item.href).length;
-  const recognitionCount = portfolio.research.length - publicationCount;
 
   return <>
     <SiteHeader />
@@ -47,12 +46,12 @@ export default function Home() {
       </div></section>
 
       <section id="research" className="section shell split-section">
-        <header className="section-heading research-heading" data-reveal="rise"><p className="eyebrow">Research & recognition</p><h2>Evidence-led work, from papers to hackathons.</h2><dl className="research-summary" aria-label="Research overview"><div><dt>Published papers</dt><dd>{String(publicationCount).padStart(2, "0")}</dd></div><div><dt>Hackathon recognition</dt><dd>{String(recognitionCount).padStart(2, "0")}</dd></div></dl><p className="research-focus">Blockchain systems · agricultural sensing · applied machine learning</p></header>
+        <header className="section-heading research-heading" data-reveal="rise"><p className="eyebrow">Research & recognition</p><h2>Evidence-led work, from papers to hackathons.</h2><dl className="research-summary" aria-label="Research overview"><div><dt>Published papers</dt><dd>{String(publicationCount).padStart(2, "0")}</dd></div><div><dt>National hackathon win</dt><dd>{portfolio.hackathons.wins}</dd></div><div><dt>Finalist appearances</dt><dd>{portfolio.hackathons.finalistAppearances}</dd></div></dl><p className="research-focus">Blockchain systems · agricultural sensing · applied machine learning</p></header>
         <div className="research-list">{portfolio.research.map((item) => <article key={item.title} data-reveal="rise"><span>{item.meta}</span><h3>{item.title}</h3><p>{item.description}</p>{item.href ? <a href={item.href} target="_blank" rel="noreferrer">Open publication ↗</a> : null}</article>)}<div className="achievement-image" data-reveal="image"><Image src="/projects/sih-winner.jpeg" alt="Parag Patil holding the SIH 2025 winner award and cheque" fill sizes="(max-width: 900px) 100vw, 55vw" /></div></div>
       </section>
 
       <section id="skills" className="section skills-section"><div className="shell">
-        <header className="section-heading skills-heading" data-reveal="rise"><p className="eyebrow">01 / Capabilities</p><h2>A practical stack for end-to-end problem solving.</h2><p><strong>Core</strong> marks primary strengths, <strong>Applied</strong> denotes project use, and <strong>Familiar</strong> indicates foundational exposure.</p></header>
+        <header className="section-heading skills-heading" data-reveal="rise"><p className="eyebrow">01 / Capabilities</p><h2>A practical stack for end-to-end problem solving.</h2><aside className="skills-key" aria-label="Skill level key"><p><strong>Core</strong><span>Primary strengths</span></p><p><strong>Applied</strong><span>Used in projects</span></p><p><strong>Familiar</strong><span>Foundational exposure</span></p></aside></header>
         <div className="skills-grid">{portfolio.skills.map((group) => <article key={group.title} data-reveal="rise"><span>{group.index}</span><h3>{group.title}</h3><ul>{group.items.map((item) => <li key={item.name}><TechMark name={item.name} /><span className="skill-name">{item.name}</span><small>{item.level}</small></li>)}</ul></article>)}</div>
         <section className="credentials" aria-labelledby="credentials-title" data-reveal="rise"><header className="subsection-heading"><div><p className="eyebrow">02 / Certifications</p><h3 id="credentials-title">Certifications & learning.</h3></div><p>Selected coursework and presentation credentials.</p></header><div className="credential-grid">{portfolio.credentials.map((credential) => <article key={credential.title}><span>{credential.date}</span><h3>{credential.title}</h3><p>{credential.issuer}</p></article>)}</div></section>
         <section className="more-work" aria-labelledby="more-work-title" data-reveal="rise"><header className="subsection-heading"><div><p className="eyebrow">03 / More experiments</p><h3 id="more-work-title">Additional systems in the repository.</h3></div><p>Smaller explorations that extend the main project stories.</p></header><div className="more-work-list">{portfolio.moreWork.map((project, index) => <a key={project.title} href={project.href} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{project.title}</span><small>{project.note}</small><ArrowUpRight size={17} /></a>)}</div></section>

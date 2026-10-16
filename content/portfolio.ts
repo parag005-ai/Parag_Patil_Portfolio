@@ -16,8 +16,10 @@ export const portfolio = {
   research: [
     { meta: "IEEE INDISCON 2025 · DOI verified via LinkedIn", title: "Redefining Trust in the Food Chain with Blockchain and ML", description: "Published in the 2025 IEEE 6th India Council International Subsections Conference; conference held 21–23 August 2025 and added to IEEE Xplore on 2 December 2025.", href: "https://doi.org/10.1109/INDISCON66021.2025.11254735" },
     { meta: "IJIRMPS · 07 Dec 2025 · DOI verified via LinkedIn", title: "From Satellite to Soil: A High-Resolution Hybrid Sensing Framework for Accurate Farm-Level Yield Estimation and Transparent Crop Insurance", description: "Paper ID 232843 in the International Journal of Innovative Research in Engineering & Multidisciplinary Physical Sciences.", href: "https://doi.org/10.37082/IJIRMPS.v13.i6.232843" },
+    { meta: "National hackathon circuit · 5+ finalist appearances", title: "Finalist across more than five national hackathons", description: "Reached the finalist stage in more than five national-level hackathons, extending a competition record that includes the SIH 2025 Software Edition win.", href: null },
     { meta: "Smart India Hackathon 2025", title: "Winner · Team Graviton · PS-SIH25263", description: "A proud milestone for Team Graviton—winning the SIH 2025 Software Edition and receiving the ₹1,50,000 award.", href: null },
   ],
+  hackathons: { wins: "01", finalistAppearances: "5+" },
   credentials: [
     { date: "Oct 2025", title: "Generative AI Leader Track", issuer: "Google Cloud Skills Boost" },
     { date: "Aug 2025", title: "INDISCON presentation certificate", issuer: "IEEE · NIT Rourkela" },
