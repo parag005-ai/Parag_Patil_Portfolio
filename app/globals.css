@@ -117,7 +117,7 @@ h1 { max-width:760px; margin-bottom:28px; font-size:clamp(58px,6.2vw,96px); line
 .more-work a:hover { padding-inline:8px; background:rgba(255,255,255,.04); } .more-work b { color:var(--coral); font-size:10px; letter-spacing:.12em; } .more-work span { font:400 26px "Libertinus Serif Display",Georgia,serif; } .more-work small { color:rgba(255,251,242,.68); font-size:12px; }
 .contact-section { background:var(--coral); padding-block:clamp(80px,10vw,140px); } .contact-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:80px; align-items:end; }
 .contact-section h2 { max-width:800px; margin:0; } .contact-links { border-top:1px solid var(--ink); } .contact-links a { display:flex; align-items:center; gap:12px; padding:18px 0; border-bottom:1px solid var(--ink); font-size:13px; } .contact-links a:hover { padding-left:8px; }
-.site-footer { min-height:110px; display:grid; grid-template-columns:1fr 1fr auto; gap:20px; align-items:center; font-size:11px; } .site-footer p { margin:0; }
+.site-footer { min-height:110px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; font-size:11px; } .site-footer p { margin:0; }
 :focus-visible { outline:3px solid #2d6d9e; outline-offset:4px; }
 @media (prefers-reduced-motion:no-preference) {
   .reveal-ready [data-reveal] { opacity:0; transform:translateY(34px); transition:opacity .72s cubic-bezier(.2,.75,.25,1),transform .82s cubic-bezier(.2,.75,.25,1); }

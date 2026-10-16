@@ -62,6 +62,6 @@ export default function Home() {
         <div className="contact-links"><a href={`mailto:${portfolio.contact.email}`}><Mail size={18} />{portfolio.contact.email}</a><a href={portfolio.contact.github} target="_blank" rel="noreferrer"><CodeXml size={18} />GitHub</a><a href={portfolio.contact.linkedin} target="_blank" rel="noreferrer"><Contact size={18} />LinkedIn</a></div>
       </div></section>
     </main>
-    <footer className="site-footer shell"><p>© 2026 Parag Patil</p><p>Designed from extracted principles, never copied branding.</p><a href="#home">Back to top ↑</a></footer>
+    <footer className="site-footer shell"><p>© 2026 Parag Patil</p><a href="#home">Back to top ↑</a></footer>
   </>;
 }
