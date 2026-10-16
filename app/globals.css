@@ -8,14 +8,16 @@ a { color:inherit; text-decoration:none; } button { font:inherit; } ::selection 
 .shell { width:min(calc(100% - clamp(40px,6vw,80px)),var(--container)); margin-inline:auto; }
 .site-header { position:sticky; top:0; z-index:50; height:68px; background:rgba(255,251,242,.92); border-bottom:1px solid var(--line); backdrop-filter:blur(14px); }
 .nav-inner { height:100%; display:flex; align-items:center; justify-content:space-between; }
-.brand { display:inline-flex; align-items:center; gap:11px; font-weight:700; letter-spacing:-.02em; }
-.brand-mark { width:28px; height:28px; border:1.5px solid var(--ink); border-radius:50%; position:relative; }
-.brand-mark::before,.brand-mark::after { content:""; position:absolute; background:var(--ink); top:50%; left:50%; transform:translate(-50%,-50%); }
-.brand-mark::before { width:17px; height:1.5px; } .brand-mark::after { width:1.5px; height:17px; }
-.desktop-nav { display:flex; align-items:center; gap:30px; font-size:13px; }
-.desktop-nav a { border-bottom:1px solid transparent; padding:5px 0; } .desktop-nav a:hover,.desktop-nav a:focus-visible { border-color:currentColor; }
-.nav-cta { display:inline-flex; align-items:center; gap:8px; padding:10px 15px!important; border:1px solid var(--ink)!important; }
-.menu-button { display:none; width:42px; height:42px; border:1px solid var(--line); background:transparent; align-items:center; justify-content:center; }
+.brand { display:inline-flex; align-items:center; gap:10px; margin-left:-8px; padding:6px 8px; transition:background-color .22s ease; }
+.brand:hover,.brand:focus-visible { background:rgba(144,203,255,.55); }
+.brand-logo { width:32px; height:32px; flex:none; }
+.brand-wordmark { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.desktop-nav { display:flex; align-items:center; gap:6px; font-size:13px; }
+.desktop-nav a { padding:10px 12px; transition:background-color .22s ease; } .desktop-nav a:hover,.desktop-nav a:focus-visible { background:rgba(144,203,255,.55); }
+.nav-cta { display:inline-flex; align-items:center; gap:8px; margin-left:8px; padding:10px 15px!important; border:1px solid var(--ink)!important; }
+.nav-cta:hover,.nav-cta:focus-visible { background:var(--blue)!important; }
+.menu-button { display:none; width:42px; height:42px; border:1px solid var(--line); background:transparent; align-items:center; justify-content:center; transition:background-color .22s ease; }
+.menu-button:hover,.menu-button:focus-visible { background:var(--blue); }
 .mobile-nav { display:none; }
 .hero { min-height:calc(100svh - 68px); display:grid; grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr); align-items:center; gap:clamp(42px,6vw,86px); padding-block:clamp(56px,7vw,96px); }
 .hero-copy { min-width:0; }
@@ -111,7 +113,7 @@ h1 { max-width:760px; margin-bottom:28px; font-size:clamp(58px,6.2vw,96px); line
 @media (max-width:980px) {
   .desktop-nav { display:none; } .menu-button { display:inline-flex; }
   .mobile-nav { position:fixed; inset:68px 0 auto; z-index:49; display:grid; background:var(--paper); border-bottom:1px solid var(--ink); padding:18px 16px 30px; transform:translateY(-130%); transition:transform .25s ease; } .mobile-nav.open { transform:translateY(0); }
-  .mobile-nav a { padding:15px; border-bottom:1px solid var(--line); font:400 28px "Libertinus Serif Display",Georgia,serif; }
+  .mobile-nav a { padding:15px; border-bottom:1px solid var(--line); font:400 28px "Libertinus Serif Display",Georgia,serif; transition:background-color .22s ease; } .mobile-nav a:hover,.mobile-nav a:focus-visible { background:rgba(144,203,255,.55); }
   .hero { grid-template-columns:minmax(0,1fr); min-height:auto; row-gap:clamp(52px,8vw,76px); } .portrait-stage { justify-self:center; width:min(100%,680px); height:clamp(540px,86vw,700px); border:1px solid var(--line); } .portrait-backdrop { inset:8% 10% 8% 10%; } .portrait-media { inset:2% 10% 0; }
   .project-story,.project-story:nth-child(even),.experience-grid,.split-section,.contact-grid { grid-template-columns:1fr; } .project-story:nth-child(even) .project-visual { order:initial; } .project-visual { min-height:430px; } .sticky-heading { position:static; } .timeline { margin-left:20px; } .timeline article { padding-left:68px; }
   .skills-heading { grid-template-columns:1fr; } .skills-heading>p:last-child { max-width:580px; margin-top:24px; } .subsection-heading>p { max-width:580px; } .skills-grid { grid-template-columns:repeat(2,1fr); } .skills-grid article:nth-child(2) { border-right:0; } .skills-grid article:nth-child(-n+2) { border-bottom:1px solid var(--ink); }
