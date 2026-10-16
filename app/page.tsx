@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowDownRight, ArrowUpRight, CodeXml, Contact, FileText, Mail } from "lucide-react";
+import { ExperienceMotion } from "@/components/experience-motion";
 import { PortraitStage } from "@/components/portrait/portrait-stage";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteHeader } from "@/components/site-header";
@@ -37,9 +38,9 @@ export default function Home() {
         </article>)}</div>
       </section>
 
-      <section id="experience" className="section section-ink"><div className="shell experience-grid">
-        <header className="section-heading sticky-heading" data-reveal="rise"><p className="eyebrow">Experience</p><h2>Learning in production contexts.</h2><p>Dates are presented exactly as supplied in the résumé, including the upcoming 22Neuro placement.</p></header>
-        <div className="timeline">{portfolio.experience.map((role, index) => <article key={role.company} data-reveal="rise"><span className="timeline-index">0{index + 1}</span><p className="timeline-date">{role.date}</p><h3>{role.role}</h3><h4>{role.company}</h4><p>{role.summary}</p></article>)}</div>
+      <section id="experience" className="section section-ink"><ExperienceMotion /><div className="shell experience-grid">
+        <header className="section-heading sticky-heading"><p className="eyebrow">Experience</p><h2>Learning in production contexts.</h2><p>Dates are presented exactly as supplied in the résumé, including the upcoming 22Neuro placement.</p></header>
+        <div className="timeline">{portfolio.experience.map((role, index) => <article className="experience-entry" key={role.company}><span className="timeline-index">0{index + 1}</span><div className="timeline-content"><p className="timeline-date">{role.date}</p><h3>{role.role}</h3><h4>{role.company}</h4><p>{role.summary}</p></div></article>)}</div>
       </div></section>
 
       <section id="research" className="section shell split-section">
