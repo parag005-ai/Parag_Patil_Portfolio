@@ -10,7 +10,7 @@ export const portfolio = {
     { title: "Document Image Compression", category: "AI/ML / Applied research", summary: "A convolutional autoencoder experiment for compressing document imagery while measuring reconstruction quality and compression trade-offs.", highlights: ["Encoder-decoder architecture for 256 × 256 grayscale inputs", "SSIM, PSNR, MSE, and compression-ratio evaluation", "FastAPI interface for repeatable comparison workflows"], stack: ["TensorFlow", "Python", "FastAPI", "Autoencoder"], href: "https://github.com/parag005-ai/Image-Compression.git", image: "/projects/compression-results.png", imageAlt: "Compression quality comparison chart from the Image Compression repository" },
   ],
   experience: [
-    { date: "01 Jul 2026 — 30 Sep 2026", role: "Backend Intern", company: "22Neuro · Transcend Discoveries Pvt Ltd", summary: "Résumé-listed placement focused on ECG ingestion, canonical records, FastAPI parsing and validation, PostgreSQL migrations, reporting workflows, and testing. The dates are future-facing as of this portfolio build." },
+    { date: "01 Jul 2026 — 30 Sep 2026", role: "Backend Intern", company: "22Neuro · Transcend Discoveries Pvt Ltd", summary: "Developed backend workflows for ECG data ingestion, canonical record management, FastAPI-based parsing and validation, PostgreSQL migrations, reporting, and automated testing." },
     { date: "01 Jan 2026 — 31 Jan 2026", role: "AI/ML Intern", company: "Sumago Infotech Pvt Ltd", summary: "Built and evaluated an autoencoder-based image-compression workflow, including preprocessing, encoder-decoder modeling, visual quality checks, metrics, and hyperparameter tuning." },
   ],
   research: [

@@ -19,6 +19,7 @@ export function ExperienceMotion() {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let markerCenters: number[] = [];
+    let markerTopEdges: number[] = [];
     let animationFrame = 0;
     let observer: IntersectionObserver | undefined;
 
@@ -27,6 +28,10 @@ export function ExperienceMotion() {
       markerCenters = markers.map((marker) => {
         const markerRect = marker.getBoundingClientRect();
         return markerRect.top - timelineRect.top + markerRect.height / 2;
+      });
+      markerTopEdges = markers.map((marker) => {
+        const markerRect = marker.getBoundingClientRect();
+        return markerRect.top - timelineRect.top;
       });
 
       const firstCenter = markerCenters[0];
@@ -52,7 +57,7 @@ export function ExperienceMotion() {
 
       timeline.style.setProperty("--timeline-progress", progress.toString());
       markers.forEach((marker, index) => {
-        marker.classList.toggle("is-active", hasReachedFirst && localPosition >= markerCenters[index]);
+        marker.classList.toggle("is-active", localPosition >= markerTopEdges[index]);
       });
     };
 
