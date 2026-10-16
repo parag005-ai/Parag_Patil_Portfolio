@@ -8,6 +8,9 @@ import { TechMark } from "@/components/tech-mark";
 import { portfolio } from "@/content/portfolio";
 
 export default function Home() {
+  const publicationCount = portfolio.research.filter((item) => item.href).length;
+  const recognitionCount = portfolio.research.length - publicationCount;
+
   return <>
     <SiteHeader />
     <ScrollReveal />
@@ -44,7 +47,7 @@ export default function Home() {
       </div></section>
 
       <section id="research" className="section shell split-section">
-        <header className="section-heading" data-reveal="rise"><p className="eyebrow">Research & recognition</p><h2>Evidence-led work, from papers to hackathons.</h2></header>
+        <header className="section-heading research-heading" data-reveal="rise"><p className="eyebrow">Research & recognition</p><h2>Evidence-led work, from papers to hackathons.</h2><dl className="research-summary" aria-label="Research overview"><div><dt>Published papers</dt><dd>{String(publicationCount).padStart(2, "0")}</dd></div><div><dt>Hackathon recognition</dt><dd>{String(recognitionCount).padStart(2, "0")}</dd></div></dl><p className="research-focus">Blockchain systems · agricultural sensing · applied machine learning</p></header>
         <div className="research-list">{portfolio.research.map((item) => <article key={item.title} data-reveal="rise"><span>{item.meta}</span><h3>{item.title}</h3><p>{item.description}</p>{item.href ? <a href={item.href} target="_blank" rel="noreferrer">Open publication ↗</a> : null}</article>)}<div className="achievement-image" data-reveal="image"><Image src="/projects/sih-winner.jpeg" alt="Parag Patil holding the SIH 2025 winner award and cheque" fill sizes="(max-width: 900px) 100vw, 55vw" /></div></div>
       </section>
 
