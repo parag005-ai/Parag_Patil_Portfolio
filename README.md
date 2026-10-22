@@ -1,126 +1,139 @@
-# vinext-starter
+# Parag Patil — Portfolio
 
-A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
+The source for [mrparag.tech](https://mrparag.tech), Parag Patil's personal software-engineering portfolio. It brings together selected backend and AI/ML work, research publications, hackathon recognition, technical experience, and professional credentials in an editorial, responsive interface.
 
-## Prerequisites
+## Live site
 
-- Node.js `>=22.13.0`
-- Portable: Windows, macOS, or Linux; no Bash required
-- Managed Linux: managed Linux runtime with Bash, `flock`, `curl`, `sha256sum`, and GNU `timeout`
-- Git is required only for publishing
+- **Portfolio:** [mrparag.tech](https://mrparag.tech)
+- **GitHub:** [github.com/parag005-ai](https://github.com/parag005-ai)
+- **LinkedIn:** [linkedin.com/in/1909parag-patil](https://www.linkedin.com/in/1909parag-patil)
 
-## Sites Lifecycle
+## Highlights
 
-The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
+- Responsive, accessibility-minded single-page portfolio
+- Editorial visual system with custom typography, subtle motion, and reduced-motion support
+- Professional portrait with bounded desktop parallax and a static touch-device fallback
+- Project case studies spanning backend systems, AI/ML, geospatial agriculture, and full-stack development
+- Research, DOI links, Smart India Hackathon recognition, and other national hackathon results
+- Interactive experience timeline and technology-stack cards
+- GA4 page-view tracking for first loads and client-side navigation
+- SEO metadata, canonical URL, Open Graph metadata, and a custom SVG favicon
 
-Run `node <plugin-root>/scripts/configure-execution-profile.mjs` only when the profile is unknown for the current checkout and environment. Profile changes do not alter tracked source or require reinstalling otherwise-valid dependencies; restart an existing preview to use the new selection. Do not commit or upload `.sites-runtime/`.
+## Tech stack
 
-This starter does not use `wrangler.jsonc`.
+| Area | Tools |
+| --- | --- |
+| Framework | Next.js 16, React 19, Vinext |
+| Build tooling | Vite 8, TypeScript |
+| Hosting | Cloudflare Workers |
+| Styling | CSS, Public Sans, Libertinus Serif Display |
+| Icons | Lucide React, React Icons |
+| Analytics | Google Analytics 4 |
 
-`install:ci` runs `npm ci` once against the shared lockfile, disables parent-workspace discovery, and includes required dev/optional dependencies despite production/omit settings. Sharp defaults to prebuilt binaries unless explicitly configured otherwise. Do not overlap installers.
+The deployed application is built as a Cloudflare Worker. The portfolio itself is a public showcase: it does not require a login, database, or user account to browse.
 
-- **Portable:** Preserve host HOME, npm cache, registry, proxy, temporary paths, retry/concurrency settings, and lifecycle-script policy. Use `--prefer-offline --no-audit --no-fund`.
-- **Managed Linux:** Use the existing project-local HOME/cache/tmp setup and Linux install lock, tarball preflight, and timeout. Restore the image-seeded npm cache only when its lockfile hash matches; retain network fallback. Builds keep their existing timeout. These helpers are not invoked by the portable profile.
+## Run locally
 
-`scripts/sites-env.mjs` preserves the caller's HOME, npm cache, proxy, XDG, and temporary-directory configuration while defaulting Wrangler and Miniflare state to the checkout. If npm reports an unwritable cache, select a writable path with `npm_config_cache` for that install. The `dev` and `start` scripts also keep Wrangler logs inside the checkout. Generated `.sites-runtime/` and `.wrangler/` directories are disposable and ignored by Git.
+### Prerequisites
 
-On portable, `npm run dev` uses `vinext dev` with HMR, starting at port 5173. Vinext records the running server in ignored `.vinext/` state, rejects an ordinary duplicate launch, and recovers stale state after a stopped process; exactly simultaneous starts can race. Pass `--port <port>` or `--hostname <host>` after `npm run dev --` when needed; keep portable previews on loopback.
+- Node.js `22.13.0` or newer
+- npm
 
-For browser QA on managed Linux, use `sites-preview start`. The project's dev script runs Vite and accepts the supervisor's `--host 0.0.0.0 --port 4173 --strictPort` arguments. The internal browser uses `http://terminal.local:4173/`; it is not a user-facing URL. The supervisor owns the preview lifecycle. The ignored local profile survives the supervisor's cleared process environment.
+### Development server
 
-The portable profile simulates ChatGPT sign-in only for loopback development requests. Visit `/signin-with-chatgpt?return_to=/` to sign in as `local_seedy` (`seedy@sites.test`, display name `Seedy`) and `/signout-with-chatgpt?return_to=/` to sign out. The development cookie preserves that identity across server restarts. Mock auth is disabled in the managed-linux profile and is not included in production builds; hosted authentication remains dispatch-owned.
-
-The Worker uses `vinext/server/fetch-handler`, including Vinext's config-aware image handling. After building, `npm start` runs that Worker locally through Wrangler on `127.0.0.1`, sharing `.wrangler/state` with dev preview and local D1 migrations; it does not deploy the site or simulate sign-in. Use the URL printed by the server. Pass `npm start -- --port <port>` to select a different built-preview port.
-
-Local previews use Miniflare's placeholder `Request.cf` metadata without a network lookup. Set `CLOUDFLARE_CF_FETCH_ENABLED=true` to opt into fetching preview metadata; this setting does not change hosted request metadata.
-
-Local tool usage metrics are disabled by default. Set `WRANGLER_SEND_METRICS=true` to opt in.
-
-## Included Shape
-
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `@cloudflare/workers-types` provides Worker types; `cloudflare-env.d.ts` declares optional `DB`/`BUCKET` bindings—update these declarations if binding names change
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Use it as the durable user key; use email and name for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive `oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty `name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by `oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+npm install
+npm run dev
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+Open the local URL printed in the terminal. To choose a port explicitly:
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use the returned `userId` as the stable user key for user-owned records; do not use email as a durable identifier.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send anonymous visitors through Sign in with ChatGPT.
-- In a Server Component, start sign-in with `<a href={chatGPTSignInPath(returnTo)} target="_top">`. The auth helper module is server-only; do not import it into a Client Component.
-- Do not use `fetch`, XHR, a client-side router, or a framework link that can prefetch the sign-in route. SIWC must start as a top-level navigation.
-- Never request the AuthAPI authorization endpoint directly. The dispatch-owned `/signin-with-chatgpt` route must start the SIWC flow.
-- Use `chatGPTSignOutPath(returnTo)` for browser sign-out links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the OAuth cookies, and identity header injection. Do not implement app routes for those reserved paths. Routes that do not import and call the helper remain anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the Sites hosting platform's access policy controls for workspace-wide restrictions, or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Local D1 migrations
-
-For a D1-backed local preview, generate SQL with `npm run db:generate`. Build once through the Sites skill's build entrypoint (or `npm run build` for standalone use) to generate `dist/server/wrangler.json`, rebuilding if bindings change. From the project root, apply each pending migration in order:
-
-```sh
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_example.sql
+```bash
+npm run dev -- --port 3000
 ```
 
-Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
+### Validate and preview the production build
 
-## Diagnostic Commands
+```bash
+npm run typecheck
+npm run lint
+npm run build
+npm run start -- --port 8787
+```
 
-- `npm run install:ci`: perform the one locked dependency install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build the deployable Sites artifact
-- `npm run start`: preview the built Worker locally with D1/R2 support
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+`npm run start` serves the generated Cloudflare Worker locally through Wrangler. Run `npm run build` before using it.
 
-When using the Sites plugin, follow its skill instructions for installation, builds, and publishing. These npm commands remain available for standalone use.
+## Project structure
 
-The portable build runs Vinext directly without a host `timeout` command. The managed-linux build uses `scripts/build-verified.sh` and its existing `SITES_BUILD_TIMEOUT` setting.
+```text
+app/
+  layout.tsx                 Site metadata, fonts, favicon, and analytics
+  page.tsx                   Portfolio page composition
+  globals.css                Global design tokens and responsive styles
+components/
+  site-header.tsx            Navigation and brand mark
+  portrait/                  Portrait presentation and motion
+  experience-motion.tsx      Experience timeline scroll behaviour
+  google-analytics.tsx       GA4 loader and page-view tracking
+content/
+  portfolio.ts               Verified portfolio content and section data
+public/
+  brand/                     SVG logo assets
+  images/portrait.webp       Professional portrait
+  projects/                  Project and achievement imagery
+  resume-parag-patil.pdf     Downloadable résumé
+build/
+  sites-worker.ts            Cloudflare Worker entry point
+vite.config.ts               Vinext, Vite, and Cloudflare configuration
+```
 
-## Learn More
+## Updating portfolio content
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Most profile data is intentionally centralised in [`content/portfolio.ts`](./content/portfolio.ts). Update this file to add or revise:
+
+- project titles, descriptions, technology stacks, and repository links
+- work experience, dates, organisations, and summaries
+- research publications, DOI links, hackathon outcomes, and credentials
+- skills and their proficiency labels
+- contact links and core profile facts
+
+Use the existing image assets as follows:
+
+- Replace the hero portrait at [`public/images/portrait.webp`](./public/images/portrait.webp).
+- Add project or achievement images under [`public/projects/`](./public/projects/).
+- Replace the downloadable résumé at [`public/resume-parag-patil.pdf`](./public/resume-parag-patil.pdf). This file is public once deployed, so review it before publishing.
+- Update the brand mark in [`public/brand/`](./public/brand/) and the favicon at [`public/favicon.svg`](./public/favicon.svg) only when the logo changes.
+
+For a new page section or a structural layout change, start with [`app/page.tsx`](./app/page.tsx) and its corresponding component/styles. Keep content edits separate from layout changes whenever possible.
+
+## Analytics
+
+Google Analytics 4 is implemented in [`components/google-analytics.tsx`](./components/google-analytics.tsx) and mounted from the root layout. It loads `gtag.js` after the page becomes interactive, sends explicit page views, and prevents duplicate events during client-side navigation.
+
+The GA4 measurement ID is public by design; do not put private analytics credentials or API secrets in the repository. Store any future secrets in Cloudflare environment variables rather than committed files.
+
+## Deployment
+
+Production is hosted on Cloudflare and available at [mrparag.tech](https://mrparag.tech). The standard deployable artifact is created with:
+
+```bash
+npm run build
+```
+
+The build produces a Cloudflare Worker configuration under `dist/server/`. Deployment settings are intentionally kept outside application components. Do not change Cloudflare, Vite, or Vinext configuration for ordinary content or styling updates.
+
+## Quality checklist
+
+Before publishing changes, run:
+
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```
+
+Also verify the portfolio at desktop and mobile widths, test navigation and external links, confirm that new images have useful alt text, and check `prefers-reduced-motion` when changing animations.
+
+## Asset and content notice
+
+This is a personal portfolio repository. The writing, résumé, photos, project imagery, logo, and other personal assets belong to Parag Patil. Please ask before reusing them.
